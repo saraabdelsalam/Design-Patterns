@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Factory\" />
-    <Folder Include="Builder\" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,8 @@
 using System.Runtime;
 using System;
 using Creational_Patterns.Prototype;
+using Creational_Patterns.Builder;
+using System.IO;
 
 namespace Design_Patterns
 {
@@ -65,6 +67,24 @@ namespace Design_Patterns
             Console.WriteLine($"emp2 instance values:{emp2.ToString()}");
             Console.WriteLine($"emp3 instance values (no changes should reflect): {emp3.ToString()}");
 
+            #endregion
+
+            #region Builder
+            Console.WriteLine("***Builder Design Pattern Demo***\n");
+
+            Director director = new Director();
+
+            // Build business computer
+            IBuilder businessComputer = new BusinessComputer("HP");
+            director.Construct(businessComputer);
+            Product productBusinessComputer = businessComputer.GetComputer();
+            productBusinessComputer.Show();
+
+            // Build gaming computer
+            IBuilder gamingComputer = new GamingComputer("DELL");
+            director.Construct(gamingComputer);
+            Product productGamingComputer = gamingComputer.GetComputer();
+            productGamingComputer.Show();
             #endregion
             #endregion
 
