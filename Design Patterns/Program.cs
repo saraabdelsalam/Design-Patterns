@@ -4,6 +4,7 @@ using System;
 using Creational_Patterns.Prototype;
 using Creational_Patterns.Builder;
 using System.IO;
+using Creational_Patterns.Factory;
 
 namespace Design_Patterns
 {
@@ -85,6 +86,14 @@ namespace Design_Patterns
             director.Construct(gamingComputer);
             Product productGamingComputer = gamingComputer.GetComputer();
             productGamingComputer.Show();
+            #endregion
+
+            #region Factory
+            //Abstract Factory 
+            Console.WriteLine("***Abstract Factory Design Pattern Demo***\n");
+            FurnitureFactory modernFactory = new ModernFurnitureFactory();
+            Client modernClient = new Client(modernFactory);
+            modernClient.UseFurniture();
             #endregion
             #endregion
 
