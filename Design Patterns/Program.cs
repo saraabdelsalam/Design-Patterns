@@ -4,6 +4,7 @@ using Creational_Patterns.Builder;
 using Creational_Patterns.Factory;
 using Structural_Patterns.Proxy;
 using Structural_Patterns.Proxy.WeatherProxy;
+using Structural_Patterns.Proxy.SmsProxy;
 
 namespace Design_Patterns
 {
@@ -97,8 +98,10 @@ namespace Design_Patterns
             #endregion
 
             #region Structural Patterns
+            Console.WriteLine("***Structural Design Patterns Demo***\n");
             #region Proxy 
-            //caching proxy example
+            Console.WriteLine("*Proxy Design Pattern Demo*\n");
+            Console.WriteLine("***Caching Proxy Example***\n");
             IWeatherService weatherService = new WeatherService();
             IWeatherService cachedWeatherService = new WeatherServiceCachingProxy(weatherService, TimeSpan.FromMinutes(15));
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
@@ -110,7 +113,12 @@ namespace Design_Patterns
             // Fetch weather data after cache expiry
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
 
-            //another example 
+            Console.WriteLine("***Protection Proxy Example***\n"); 
+            SmsServiceProxy smsServiceProxy = new SmsServiceProxy();
+            Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "1st Sms"));
+            Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "2nd Sms"));
+            Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "3rd Sms"));
+            Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "4th Sms"));
             #endregion
             #endregion
 
