@@ -1,6 +1,4 @@
-﻿
-
-namespace Structural_Patterns.Proxy
+﻿namespace Structural_Patterns.Proxy.WeatherProxy
 {
     public class WeatherServiceCachingProxy : IWeatherService
     {

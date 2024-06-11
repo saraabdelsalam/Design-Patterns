@@ -3,6 +3,7 @@ using Creational_Patterns.Prototype;
 using Creational_Patterns.Builder;
 using Creational_Patterns.Factory;
 using Structural_Patterns.Proxy;
+using Structural_Patterns.Proxy.WeatherProxy;
 
 namespace Design_Patterns
 {
@@ -97,6 +98,7 @@ namespace Design_Patterns
 
             #region Structural Patterns
             #region Proxy 
+            //caching proxy example
             IWeatherService weatherService = new WeatherService();
             IWeatherService cachedWeatherService = new WeatherServiceCachingProxy(weatherService, TimeSpan.FromMinutes(15));
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
@@ -107,6 +109,8 @@ namespace Design_Patterns
 
             // Fetch weather data after cache expiry
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
+
+            //another example 
             #endregion
             #endregion
 
