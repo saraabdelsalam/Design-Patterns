@@ -1,10 +1,8 @@
 ﻿using Creational_Patterns.Singleton;
-using System.Runtime;
-using System;
 using Creational_Patterns.Prototype;
 using Creational_Patterns.Builder;
-using System.IO;
 using Creational_Patterns.Factory;
+using Structural_Patterns.Proxy;
 
 namespace Design_Patterns
 {
@@ -98,6 +96,18 @@ namespace Design_Patterns
             #endregion
 
             #region Structural Patterns
+            #region Proxy 
+            IWeatherService weatherService = new WeatherService();
+            IWeatherService cachedWeatherService = new WeatherServiceCachingProxy(weatherService, TimeSpan.FromMinutes(15));
+            Console.WriteLine(cachedWeatherService.GetWeather("New York"));
+            Console.WriteLine(cachedWeatherService.GetWeather("New York"));
+
+            // Wait for more than cache duration to demonstrate cache expiry
+            System.Threading.Thread.Sleep(TimeSpan.FromMinutes(16));
+
+            // Fetch weather data after cache expiry
+            Console.WriteLine(cachedWeatherService.GetWeather("New York"));
+            #endregion
             #endregion
 
             #region Behavioral Patterns
