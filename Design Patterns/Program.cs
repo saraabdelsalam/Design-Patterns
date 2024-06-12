@@ -6,6 +6,7 @@ using Structural_Patterns.Proxy;
 using Structural_Patterns.Proxy.WeatherProxy;
 using Structural_Patterns.Proxy.SmsProxy;
 using Structural_Patterns.Decorator;
+using Structural_Patterns.Adapter;
 
 namespace Design_Patterns
 {
@@ -130,6 +131,15 @@ namespace Design_Patterns
 
             Console.WriteLine("Order: " + coffee.GetDescription());
             Console.WriteLine("Cost: $" + coffee.GetCost());
+            #endregion
+
+            #region Adapter 
+            Console.WriteLine("*Adapter Design Pattern Demo*\n");
+            MachineOperator machineOperator = new MachineOperator();
+            machineOperator.Salary = 2000;
+            SalaryCalculatorAdapter adapter = new SalaryCalculatorAdapter();
+            var salary = adapter.CalculateSalary(machineOperator);
+            Console.WriteLine($"Machine Operator Salary : {salary.ToString()}");
             #endregion
             #endregion
 
