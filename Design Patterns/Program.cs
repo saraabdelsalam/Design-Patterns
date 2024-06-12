@@ -5,6 +5,7 @@ using Creational_Patterns.Factory;
 using Structural_Patterns.Proxy;
 using Structural_Patterns.Proxy.WeatherProxy;
 using Structural_Patterns.Proxy.SmsProxy;
+using Structural_Patterns.Decorator;
 
 namespace Design_Patterns
 {
@@ -103,22 +104,32 @@ namespace Design_Patterns
             Console.WriteLine("*Proxy Design Pattern Demo*\n");
             Console.WriteLine("***Caching Proxy Example***\n");
             IWeatherService weatherService = new WeatherService();
-            IWeatherService cachedWeatherService = new WeatherServiceCachingProxy(weatherService, TimeSpan.FromMinutes(15));
+            IWeatherService cachedWeatherService = new WeatherServiceCachingProxy(weatherService, TimeSpan.FromMinutes(1));
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
 
             // Wait for more than cache duration to demonstrate cache expiry
-            System.Threading.Thread.Sleep(TimeSpan.FromMinutes(16));
+            System.Threading.Thread.Sleep(TimeSpan.FromMinutes(2));
 
             // Fetch weather data after cache expiry
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
 
-            Console.WriteLine("***Protection Proxy Example***\n"); 
+            Console.WriteLine("***Protection Proxy Example***\n");
             SmsServiceProxy smsServiceProxy = new SmsServiceProxy();
             Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "1st Sms"));
             Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "2nd Sms"));
             Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "3rd Sms"));
             Console.WriteLine(smsServiceProxy.SendSms("1", "01112224444", "4th Sms"));
+            #endregion
+            #region Decorator
+            Console.WriteLine("*Decorator Design Pattern Demo*\n");      
+            ICoffee coffee = new BasicCoffee();
+            coffee = new MilkDecorator(coffee);
+            coffee = new SugarDecorator(coffee);
+            coffee = new CaramelFlavorDecorator(coffee);
+
+            Console.WriteLine("Order: " + coffee.GetDescription());
+            Console.WriteLine("Cost: $" + coffee.GetCost());
             #endregion
             #endregion
 
