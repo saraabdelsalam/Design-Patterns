@@ -7,6 +7,8 @@ using Structural_Patterns.Proxy.WeatherProxy;
 using Structural_Patterns.Proxy.SmsProxy;
 using Structural_Patterns.Decorator;
 using Structural_Patterns.Adapter;
+using Structural_Patterns.Bridge.Contracts;
+using Structural_Patterns.Bridge.Implementations;
 
 namespace Design_Patterns
 {
@@ -110,7 +112,7 @@ namespace Design_Patterns
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
 
             // Wait for more than cache duration to demonstrate cache expiry
-            System.Threading.Thread.Sleep(TimeSpan.FromMinutes(2));
+            System.Threading.Thread.Sleep(TimeSpan.FromMinutes(1));
 
             // Fetch weather data after cache expiry
             Console.WriteLine(cachedWeatherService.GetWeather("New York"));
@@ -140,6 +142,22 @@ namespace Design_Patterns
             SalaryCalculatorAdapter adapter = new SalaryCalculatorAdapter();
             var salary = adapter.CalculateSalary(machineOperator);
             Console.WriteLine($"Machine Operator Salary : {salary.ToString()}");
+            #endregion
+            #region Bridge
+            ICombo fryAndDrink = new Fries_Soda();
+            ICombo veggyJuice = new VegatablesAndJuice();
+
+            Burger oldSchoolBurgerWithFryAndDrink = new OldSchoolBurger(fryAndDrink);
+            Burger oldSchoolBurgerWithVeggyJuice = new OldSchoolBurger(veggyJuice);
+
+            Burger chickenBurgerWithFryAndDrink = new ChickenBurger(fryAndDrink);
+            Burger chickenBurgerWithVeggyJuice = new ChickenBurger(veggyJuice);
+
+            oldSchoolBurgerWithFryAndDrink.GetDetails();
+            oldSchoolBurgerWithVeggyJuice.GetDetails();
+
+            chickenBurgerWithFryAndDrink.GetDetails();
+            chickenBurgerWithVeggyJuice.GetDetails();
             #endregion
             #endregion
 
