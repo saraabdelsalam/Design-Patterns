@@ -10,6 +10,7 @@ using Structural_Patterns.Adapter;
 using Structural_Patterns.Bridge.Contracts;
 using Structural_Patterns.Bridge.Implementations;
 using Structural_Patterns.Composite;
+using Structural_Patterns.Facade.Facade;
 
 namespace Design_Patterns
 {
@@ -144,6 +145,7 @@ namespace Design_Patterns
             var salary = adapter.CalculateSalary(machineOperator);
             Console.WriteLine($"Machine Operator Salary : {salary.ToString()}");
             #endregion
+
             #region Bridge
             Console.WriteLine("*Bridge Design Pattern Demo*\n");
             ICombo fryAndDrink = new Fries_Soda();
@@ -161,6 +163,7 @@ namespace Design_Patterns
             chickenBurgerWithFryAndDrink.GetDetails();
             chickenBurgerWithVeggyJuice.GetDetails();
             #endregion
+
             #region Composite
             Console.WriteLine("*Composite Design Pattern Demo*\n");
             IEmployee employee1 = new Structural_Patterns.Composite.Employee("ahmed abdelsalam", "Software Engineer");
@@ -179,6 +182,19 @@ namespace Design_Patterns
             company.AddEmployee(engineeringDepartment);
             company.AddEmployee(managementDepartment);
             company.ShowDetails();
+            #endregion
+
+            #region Facade 
+            Console.WriteLine("*Facade Design Pattern Demo*\n");
+            var multimediaFacade = new MultiMediaFacade();
+
+            Console.WriteLine("Start watching movie");
+            multimediaFacade.WatchMovie("Inception", "DTS", "English");
+
+            Console.WriteLine();
+
+            Console.WriteLine("Start listening music");
+            multimediaFacade.ListenToMusic("Stairway to Heaven");
             #endregion
             #endregion
 
