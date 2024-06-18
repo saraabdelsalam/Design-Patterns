@@ -9,6 +9,7 @@ using Structural_Patterns.Decorator;
 using Structural_Patterns.Adapter;
 using Structural_Patterns.Bridge.Contracts;
 using Structural_Patterns.Bridge.Implementations;
+using Structural_Patterns.Composite;
 
 namespace Design_Patterns
 {
@@ -144,6 +145,7 @@ namespace Design_Patterns
             Console.WriteLine($"Machine Operator Salary : {salary.ToString()}");
             #endregion
             #region Bridge
+            Console.WriteLine("*Bridge Design Pattern Demo*\n");
             ICombo fryAndDrink = new Fries_Soda();
             ICombo veggyJuice = new VegatablesAndJuice();
 
@@ -158,6 +160,25 @@ namespace Design_Patterns
 
             chickenBurgerWithFryAndDrink.GetDetails();
             chickenBurgerWithVeggyJuice.GetDetails();
+            #endregion
+            #region Composite
+            Console.WriteLine("*Composite Design Pattern Demo*\n");
+            IEmployee employee1 = new Structural_Patterns.Composite.Employee("ahmed abdelsalam", "Software Engineer");
+            IEmployee employee2= new Structural_Patterns.Composite.Employee("sara abdelsalam", "Senior Software Engineer");
+            IEmployee employee3 = new Structural_Patterns.Composite.Employee("rana essam", "Project Manager");
+
+            Department engineeringDepartment = new Department();
+            engineeringDepartment.AddEmployee(employee1);
+            engineeringDepartment.AddEmployee(employee2);
+
+            Department managementDepartment = new Department();
+            managementDepartment.AddEmployee(employee3);
+
+            // Create a top-level department and add departments to it
+            Department company = new Department();
+            company.AddEmployee(engineeringDepartment);
+            company.AddEmployee(managementDepartment);
+            company.ShowDetails();
             #endregion
             #endregion
 
