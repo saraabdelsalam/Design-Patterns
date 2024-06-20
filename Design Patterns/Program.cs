@@ -11,6 +11,7 @@ using Structural_Patterns.Bridge.Contracts;
 using Structural_Patterns.Bridge.Implementations;
 using Structural_Patterns.Composite;
 using Structural_Patterns.Facade.Facade;
+using Behavioral_Patterns.Chain_Of_Responsibility;
 
 namespace Design_Patterns
 {
@@ -202,6 +203,19 @@ namespace Design_Patterns
 
             #region Behavioral Patterns
             Console.WriteLine("***Behavioral Design Patterns Demo***\n");
+
+            #region COR
+            Console.WriteLine("*Chain Of Responsibility Design Pattern Demo*\n");
+            var authenticationHandler = new AuthenticationHandler();
+            var authorizationHandler = new AuthorizationHandler();
+            var validationHandler = new ValidationHandler();
+            
+            authenticationHandler.SetNext(authorizationHandler);
+            authorizationHandler.SetNext(validationHandler);
+
+            var request = new Request { Content = "Demo Request" };
+            authenticationHandler.Handle(request);
+            #endregion
             #endregion
         }
     }
