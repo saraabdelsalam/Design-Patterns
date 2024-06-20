@@ -19,6 +19,7 @@ namespace Design_Patterns
         static void Main(string[] args)
         {
             #region Creational Patterns
+            Console.WriteLine("***Creational Design Patterns Demo***\n");
             #region singleton
             Task task1 = Task.Factory.StartNew(() =>
             {
@@ -196,9 +197,11 @@ namespace Design_Patterns
             Console.WriteLine("Start listening music");
             multimediaFacade.ListenToMusic("Stairway to Heaven");
             #endregion
+
             #endregion
 
             #region Behavioral Patterns
+            Console.WriteLine("***Behavioral Design Patterns Demo***\n");
             #endregion
         }
     }
