@@ -12,6 +12,8 @@ using Structural_Patterns.Bridge.Implementations;
 using Structural_Patterns.Composite;
 using Structural_Patterns.Facade.Facade;
 using Behavioral_Patterns.Chain_Of_Responsibility;
+using Behavioral_Patterns.Command.Commands;
+using Behavioral_Patterns.Command;
 
 namespace Design_Patterns
 {
@@ -86,13 +88,13 @@ namespace Design_Patterns
             // Build business computer
             IBuilder businessComputer = new BusinessComputer("HP");
             director.Construct(businessComputer);
-            Product productBusinessComputer = businessComputer.GetComputer();
+            Creational_Patterns.Builder.Product productBusinessComputer = businessComputer.GetComputer();
             productBusinessComputer.Show();
 
             // Build gaming computer
             IBuilder gamingComputer = new GamingComputer("DELL");
             director.Construct(gamingComputer);
-            Product productGamingComputer = gamingComputer.GetComputer();
+            Creational_Patterns.Builder.Product productGamingComputer = gamingComputer.GetComputer();
             productGamingComputer.Show();
             #endregion
 
@@ -215,6 +217,18 @@ namespace Design_Patterns
 
             var request = new Request { Content = "Demo Request" };
             authenticationHandler.Handle(request);
+            #endregion
+
+            #region Command 
+            Console.WriteLine("*Command Design Pattern Demo*\n");
+            var product1 = new Behavioral_Patterns.Command.Product(1, "laptop", 20000.0, 10);
+            var product2 = new Behavioral_Patterns.Command.Product(2, "keyboard", 900.0, 15);
+            var product3 = new Behavioral_Patterns.Command.Product(3, "charger", 400.0, 30);
+            var order = new Order();
+            var invoker = new CommandsInvoker();
+            invoker.AddCommand(new AddProductCommand(order, product1, 1));
+            invoker.AddCommand(new AddStockCommand(product1, -1));
+            invoker.ExecuteCommands();
             #endregion
             #endregion
         }
