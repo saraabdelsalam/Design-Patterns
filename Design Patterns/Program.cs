@@ -14,6 +14,7 @@ using Structural_Patterns.Facade.Facade;
 using Behavioral_Patterns.Chain_Of_Responsibility;
 using Behavioral_Patterns.Command.Commands;
 using Behavioral_Patterns.Command;
+using Behavioral_Patterns.Iterator;
 
 namespace Design_Patterns
 {
@@ -229,6 +230,22 @@ namespace Design_Patterns
             invoker.AddCommand(new AddProductCommand(order, product1, 1));
             invoker.AddCommand(new AddStockCommand(product1, -1));
             invoker.ExecuteCommands();
+            #endregion
+
+            #region Iterator 
+            Console.WriteLine("*Command Design Pattern Demo*\n");
+            ConcreteAggregate<int> aggregate = new ConcreteAggregate<int>();    
+            aggregate.AddItem(1);
+            aggregate.AddItem(2);
+            aggregate.AddItem(3);
+
+            IIterator<int> iterator = aggregate.CreateIterator();
+            Console.WriteLine("Iterating over collection:");
+
+            for (int item = iterator.First(); !iterator.IsDone(); item = iterator.Next())
+            {
+                Console.WriteLine(item);
+            }
             #endregion
             #endregion
         }
